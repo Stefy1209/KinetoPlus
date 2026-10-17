@@ -1,0 +1,117 @@
+# KinetoPlus Database
+
+## Table of contents
+
+1. [Current database](#current-database)
+   - [Purpose](#purpose)
+   - [Technologies](#technologies)
+   - [Tables](#tables)
+   - [Relationships](#relationships)
+2. [Migrations](#migrations)
+   - [Migration template](#migration-template)
+   - [0001 – InitialCreate](#0001--initialcreate)
+
+---
+
+## Current database
+
+This chapter always describes the database as it is after the latest migration.
+
+### Purpose
+
+KinetoPlus lets people search for physiotherapy clinics. For now the database only
+supports search, so it stores the essential details of each clinic. Reviews, accounts
+and bookings are out of scope.
+
+### Technologies
+
+| Part | Choice | Why |
+|---|---|---|
+| Database | Azure SQL Database, serverless, free offer | Works natively with .NET, C# and Azure, and costs nothing at this size. |
+| Data access | Entity Framework Core with the SQL Server provider | Maps the C# model to the database. |
+| Schema changes | EF Core migrations | Every change to the database is a versioned migration, recorded in the [Migrations](#migrations) chapter. |
+| Infrastructure | Terraform | Creates the Azure SQL server and database. |
+
+### Tables
+
+#### Clinics
+
+One row per clinic location.
+
+| Column | Type | Required | Description |
+|---|---|---|---|
+| Id | int, auto-increment | Yes | Primary key. |
+| Name | text, max 200 | Yes | Clinic name. |
+| Address | text, max 300 | Yes | Street and number. |
+| City | text, max 100 | Yes | City or town. |
+| PhoneNumber | text, max 30 | No | Contact phone. |
+| Email | text, max 254 | No | Contact email. |
+| Website | text, max 500 | No | Clinic website. |
+| CreatedAt | date and time (UTC) | Yes | When the clinic was added. |
+| UpdatedAt | date and time (UTC) | Yes | When the clinic was last changed. |
+
+### Relationships
+
+There are none yet, since Clinics is the only table. Tables added later (for example
+reviews) will link to a clinic through its Id.
+
+---
+
+## Migrations
+
+### Migration template
+
+Rules:
+- Every database change is made through an EF Core migration, never by hand.
+- Each migration gets one entry in this chapter and a line in
+  the table of contents, added in the same branch as the migration.
+- After each migration, the [Current database](#current-database) chapter is updated to
+  match.
+- An applied migration is never changed. A fix is a new migration with a new entry.
+
+Every entry has this structure:
+
+#### NNNN – Migration name
+
+- **Date:**
+- **Author:**
+- **Issue / branch:**
+- **Status:** Draft / Applied
+- **Summary:** What changes.
+- **Reason:** Why the change is needed.
+- **Data impact:** What happens to existing data.
+- **Rollback:** How to undo the change.
+- **Migration file:** Link to the EF Core migration in the repository.
+
+Changes:
+
+| Table | Column | Change | Before | After |
+|---|---|---|---|---|
+| — | — | Added / Modified / Removed | — | — |
+
+### 0001 – InitialCreate
+
+- **Date:** 2026-10-17
+- **Author:** Stefan
+- **Issue / branch:** #7 / 7-design-db
+- **Status:** Draft
+- **Summary:** Creates the Clinics table.
+- **Reason:** The app needs to store clinics so users can search them.
+- **Data impact:** None, the database is empty.
+- **Rollback:** Revert to the state before this migration, which removes the Clinics table.
+- **Migration file:** [InitialCreate](../../src/backend/WebAPI/Migrations/) (link to the exact file once the migration is generated)
+
+Changes:
+
+| Table | Column | Change | Before | After |
+|---|---|---|---|---|
+| Clinics | (table) | Added | — | New table |
+| Clinics | Id | Added | — | int, auto-increment, primary key |
+| Clinics | Name | Added | — | text, max 200, required |
+| Clinics | Address | Added | — | text, max 300, required |
+| Clinics | City | Added | — | text, max 100, required |
+| Clinics | PhoneNumber | Added | — | text, max 30, optional |
+| Clinics | Email | Added | — | text, max 254, optional |
+| Clinics | Website | Added | — | text, max 500, optional |
+| Clinics | CreatedAt | Added | — | date and time (UTC), required |
+| Clinics | UpdatedAt | Added | — | date and time (UTC), required |
