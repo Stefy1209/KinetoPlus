@@ -3,4 +3,8 @@
   <Folder Name="/src/backend/">
     <Project Path="src/backend/WebAPI/WebAPI.csproj" />
   </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/backend/">
+    <Project Path="tests/backend/WebAPI.Tests/WebAPI.Tests.csproj" />
+  </Folder>
 </Solution>
