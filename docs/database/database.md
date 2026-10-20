@@ -48,7 +48,6 @@ One row per clinic location.
 | Email | text, max 254 | No | Contact email. |
 | Website | text, max 500 | No | Clinic website. |
 | CreatedAt | date and time (UTC) | Yes | When the clinic was added. |
-| UpdatedAt | date and time (UTC) | Yes | When the clinic was last changed. |
 
 ### Relationships
 
@@ -114,4 +113,3 @@ Changes:
 | Clinics | Email | Added | — | text, max 254, optional |
 | Clinics | Website | Added | — | text, max 500, optional |
 | Clinics | CreatedAt | Added | — | date and time (UTC), required |
-| Clinics | UpdatedAt | Added | — | date and time (UTC), required |
