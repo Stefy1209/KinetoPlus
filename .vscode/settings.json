@@ -1,3 +1,6 @@
 {
-    "dotnet.defaultSolution": "KinetoPlus.slnx"
+    "dotnet.defaultSolution": "KinetoPlus.slnx",
+    "cSpell.words": [
+        "Kineto"
+    ]
 }
