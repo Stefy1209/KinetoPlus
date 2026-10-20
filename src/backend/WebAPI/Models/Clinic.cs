@@ -24,6 +24,14 @@ public class Clinic
         CreatedAt = DateTime.UtcNow;
     }
 
+    // Used by EF Core when loading clinics, so stored rows are not validated again.
+    private Clinic()
+    {
+        Name = null!;
+        Address = null!;
+        City = null!;
+    }
+
     public Guid Id { get; private set; }
     [MaxLength(200)] public string Name { get; private set; }
     [MaxLength(300)] public string Address { get; private set; }
