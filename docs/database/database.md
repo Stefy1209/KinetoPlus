@@ -92,13 +92,13 @@ Changes:
 
 - **Date:** 2026-10-17
 - **Author:** Stefan
-- **Issue / branch:** #7 / 7-design-db
+- **Issue / branch:** #11 / 11-write-the-migration
 - **Status:** Draft
 - **Summary:** Creates the Clinics table.
 - **Reason:** The app needs to store clinics so users can search them.
 - **Data impact:** None, the database is empty.
 - **Rollback:** Revert to the state before this migration, which removes the Clinics table.
-- **Migration file:** [InitialCreate](../../src/backend/WebAPI/Migrations/) (link to the exact file once the migration is generated)
+- **Migration file:** [20261020191224_InitialCreate.cs](../../src/backend/WebAPI/Migrations/20261020191224_InitialCreate.cs)
 
 Changes:
 
