@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using WebAPI.Data;
+using WebAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<KinetoPlusDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("KinetoPlus")));
+builder.Services.AddScoped<IClinicRepository, ClinicRepository>();
 
 var app = builder.Build();
 
