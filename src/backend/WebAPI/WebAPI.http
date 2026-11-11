@@ -1,6 +1,11 @@
 @WebAPI_HostAddress = http://localhost:5102
 
-GET {{WebAPI_HostAddress}}/weatherforecast/
+### Get every clinic
+GET {{WebAPI_HostAddress}}/api/clinics
+Accept: application/json
+
+### Get one clinic by id (replace the id with one from the list above)
+GET {{WebAPI_HostAddress}}/api/clinics/00000000-0000-0000-0000-000000000000
 Accept: application/json
 
 ###
